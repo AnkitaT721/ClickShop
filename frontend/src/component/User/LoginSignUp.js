@@ -4,7 +4,7 @@ import MetaData from "../layout/MetaData";
 import { AiOutlineMail } from "react-icons/ai";
 import { SlLockOpen } from "react-icons/sl";
 import { MdAccountCircle } from "react-icons/md";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import profilePic from "../../images/rev1.png";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
@@ -18,6 +18,7 @@ const LoginSignUp = () => {
   const navigate = useNavigate();
   const alert = useAlert();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const { error, loading, isAuthenticated } = useSelector((state) => state.user);
 
@@ -72,6 +73,8 @@ const LoginSignUp = () => {
     }
   };
 
+  const redirect = location.search ? location.search.split("=")[1] : "/account";
+
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -79,9 +82,9 @@ const LoginSignUp = () => {
     }
 
     if(isAuthenticated) {
-      navigate("/account");
+      navigate(redirect);
     }
-  }, [dispatch, error, alert, navigate, isAuthenticated]);
+  }, [dispatch, error, alert, navigate, isAuthenticated, redirect]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {

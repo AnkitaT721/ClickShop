@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css";
@@ -9,6 +9,7 @@ import ReviewCard from "./ReviewCard.js";
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
+import { addItemsToCart } from "../../actions/cartAction";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -18,6 +19,27 @@ const ProductDetails = () => {
   const { product, loading, error } = useSelector(
     (state) => state.productDetails
   );
+
+  const [quantity, setQuantity] = useState(1);
+
+  const increaseQuantity = () => {
+    if (product.stock <= quantity) return;
+
+    const qty = quantity + 1;
+    setQuantity(qty);
+  }
+
+  const decreaseQuantity = () => {
+    if (quantity <= 1) return;
+
+    const qty = quantity - 1;
+    setQuantity(qty);
+  }
+
+  const addToCartHandler = () => {
+    dispatch(addItemsToCart(id, quantity));
+    alert.success("Item Added To Cart");
+  };
 
   useEffect(() => {
 
@@ -73,15 +95,15 @@ const ProductDetails = () => {
                 <h1>{`₹${product.price}`}</h1>
                 <div className="detailsBlock-3-1">
                   <div className="detailsBlock-3-1-1">
-                    <button>-</button>
-                    <input value="1" type="number" />
-                    <button>+</button>
-                  </div>{" "}
-                  <button>Add to Cart</button>
+                    <button onClick={decreaseQuantity}>-</button>
+                    <input readOnly value={quantity} type="number" />
+                    <button onClick={increaseQuantity}>+</button>
+                  </div>
+                  <button onClick={addToCartHandler}>Add to Cart</button>
                 </div>
 
                 <p>
-                  Status:{" "}
+                  Status:
                   <b className={product.stock < 1 ? "redColor" : "greenColor"}>
                     {product.stock < 1 ? "OutOfstock" : "In Stock"}
                   </b>
