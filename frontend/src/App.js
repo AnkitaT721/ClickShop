@@ -1,5 +1,5 @@
-import React from 'react';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
 import Header from "./component/layout/Header/Header";
 import Footer from "./component/layout/Footer/Footer";
 import Home from "./component/Home/Home";
@@ -14,39 +14,48 @@ import UpdatePassword from "./component/User/UpdatePassword";
 import ForgotPassword from "./component/User/ForgotPassword";
 import ResetPassword from "./component/User/ResetPassword";
 import Cart from "./component/Cart/Cart";
-import Shipping from "./component/Cart/Shipping.js";
-import { Routes, Route } from 'react-router-dom';
+import Shipping from "./component/Cart/Shipping";
+import ConfirmOrder from "./component/Cart/ConfirmOrder";
+import Payment from "./component/Cart/Payment";
+import { Routes, Route } from "react-router-dom";
 import WebFont from "webfontloader";
-import store from "./store"
-import { loadUser } from './actions/userAction';
-import { useSelector } from 'react-redux';
-import ProtectedRoute from './component/Route/ProtectedRoute';
-
-
+import store from "./store";
+import { loadUser } from "./actions/userAction";
+import { useSelector } from "react-redux";
+import ProtectedRoute from "./component/Route/ProtectedRoute";
+import axios from "axios";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 function App() {
+  const { isAuthenticated, user } = useSelector((state) => state.user);
 
-  const { isAuthenticated, user } = useSelector((state) => state.user)
+  const [stripeApiKey, setStripeApiKey] = useState("");
 
-  React.useEffect(() => {
+  async function getStripeApiKey() {
+    const { data } = await axios.get("/api/v1/stripeapikey");
 
+    setStripeApiKey(data.stripeApiKey);
+  }
+
+  useEffect(() => {
     WebFont.load({
-      google:{
-        families: ["Roboto", "Droid Sans", "Chilanka"]
-      }
+      google: {
+        families: ["Roboto", "Droid Sans", "Chilanka"],
+      },
     });
 
     store.dispatch(loadUser());
-  }, [])
+
+    getStripeApiKey();
+  }, []);
 
   return (
     <>
-    
-    <Header />
-      {isAuthenticated && <UserOptions user={user} />} 
-      
-      <Routes>
+      <Header />
+      {isAuthenticated && <UserOptions user={user} />}
 
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/products" element={<Products />} />
@@ -60,17 +69,26 @@ function App() {
           <Route path="/me/update" element={<UpdateProfile />} />
           <Route path="/password/update" element={<UpdatePassword />} />
           <Route path="/shipping" element={<Shipping />} />
+          <Route path="/order/confirm" element={<ConfirmOrder />} />
+          {stripeApiKey && (
+            <Route
+              path="/process/payment"
+              element={
+                <Elements stripe={loadStripe(stripeApiKey)}>
+                  <Payment />
+                </Elements>
+              }
+            />
+          )}
         </Route>
 
         <Route path="/password/forgot" element={<ForgotPassword />} />
         <Route path="/password/reset/:token" element={<ResetPassword />} />
 
         <Route path="/search" element={<Search />} />
-       
       </Routes>
 
-    <Footer />
-    
+      <Footer />
     </>
   );
 }
