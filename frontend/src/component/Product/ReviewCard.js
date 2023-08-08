@@ -1,26 +1,33 @@
+import { Rating } from "@mui/material";
 import React from "react";
-import ReactStars from "react-rating-stars-component";
 import profilePng from "../../images/rev4.png";
+import { useSelector } from "react-redux";
+import Loader from "../layout/Loader/Loader";
 
 const ReviewCard = ({ review }) => {
+  const { user, loading } = useSelector((state) => state.user);
 
   const options = {
-    edit: false,
-    color: "rgba(20, 20, 20, 0.1)",
-    activeColor: "tomato",
-    size: window.innerWidth < 768 ? 17 : 22,
+    size: "small",
     value: review.rating,
-    isHalf: true,
+    readOnly: true,
+    precision: 0.5,
   };
 
   return (
-  <div className="reviewCard">
-    <img src={profilePng} alt="User" />
-    <p>{review.name}</p>
-    <ReactStars {...options} />
-    <span className="comment">{review.comment}</span>
-  </div>
-  )
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="reviewCard">
+          <img src={user ? user.avatar.url : profilePng} alt={user.name} />
+          <p>{review.name}</p>
+          <Rating {...options} />
+          <span className="comment">{review.comment}</span>
+        </div>
+      )}
+    </>
+  );
 };
 
 export default ReviewCard;

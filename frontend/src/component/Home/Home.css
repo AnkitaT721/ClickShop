@@ -83,7 +83,7 @@
   width: 14vmax;
 }
 
-/* ReactStars */
+
 .productCard > div {
   margin: 0.5vmax;
   display: flex;
@@ -133,6 +133,11 @@
 
   .productCard > span {
     font-size: 1.5vmax;
+  }
+
+  .productCardSpan {
+    font: 300 1vmax "Roboto";
+    display: block;
   }
 
   .productCard > div > span {

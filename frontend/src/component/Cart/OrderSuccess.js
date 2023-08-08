@@ -15,7 +15,7 @@ const OrderSuccess = () => {
     <div className="orderSuccess">
       <BsCheck2Circle />
 
-      <Typography>{user.name.split(" ")[0]}, Your Order has been Placed Successfully!</Typography>
+      <Typography>{user.name}, Your Order has been Placed Successfully!</Typography>
       <Link to="/orders">View Orders</Link>
     </div>
     </>
