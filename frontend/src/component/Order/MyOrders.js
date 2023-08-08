@@ -31,11 +31,9 @@ const MyOrders = () => {
       headerName: "Status",
       minWidth: 150,
       flex: 0.5,
-    //    cellClassName: (params) => {
-    //       return params.value === "delivered"
-    //         ? "greenColor"
-    //         : "redColor";
-    //     },
+      cellClassName: (params) => {
+        return params.value === "delivered" ? "greenColor" : "redColor";
+      },
     },
     {
       field: "itemsQty",
@@ -51,21 +49,21 @@ const MyOrders = () => {
       minWidth: 150,
       flex: 0.3,
     },
-    // {
-    //   field: "actions",
-    //   flex: 0.3,
-    //   headerName: "Actions",
-    //   minWidth: 150,
-    //   type: "number",
-    //   sortable: false,
-    //   renderCell: (params) => {
-    //     return (
-    //       <Link to={`/order/${params.value("id")}`}>
-    //         <MdLaunch />
-    //       </Link>
-    //     );
-    //   },
-    // },
+    {
+      field: "actions",
+      flex: 0.3,
+      headerName: "Actions",
+      minWidth: 150,
+      type: "number",
+      sortable: false,
+      renderCell: (params) => {
+        return (
+          <Link to={`/order/${params.id}`}>
+            <MdLaunch />
+          </Link>
+        );
+      },
+    },
   ];
   const rows = [];
 
