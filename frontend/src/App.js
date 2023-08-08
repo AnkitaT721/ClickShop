@@ -17,6 +17,8 @@ import Cart from "./component/Cart/Cart";
 import Shipping from "./component/Cart/Shipping";
 import ConfirmOrder from "./component/Cart/ConfirmOrder";
 import Payment from "./component/Cart/Payment";
+import OrderSuccess from "./component/Cart/OrderSuccess";
+import MyOrders from "./component/Order/MyOrders";
 import { Routes, Route } from "react-router-dom";
 import WebFont from "webfontloader";
 import store from "./store";
@@ -80,6 +82,8 @@ function App() {
               }
             />
           )}
+          <Route path="/success" element={<OrderSuccess />} />
+          <Route path="/orders" element={<MyOrders />} />
         </Route>
 
         <Route path="/password/forgot" element={<ForgotPassword />} />

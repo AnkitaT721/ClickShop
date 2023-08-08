@@ -17,6 +17,7 @@ import { BsFillCreditCard2BackFill } from "react-icons/bs";
 import { BsCalendarEventFill } from "react-icons/bs";
 import { MdVpnKey } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { clearErrors, createOrder } from "../../actions/orderAction";
 
 const Payment = () => {
 
@@ -32,12 +33,21 @@ const Payment = () => {
 
     const { shippingInfo, cartItems } = useSelector((state) => state.cart);
     const { user } = useSelector((state) => state.user);
+    const { error } = useSelector((state) => state.newOrder);
 
 
     const paymentData = {
-      amount: Math.round(orderInfo.totalPrice * 100), //rupees in paise
-      
+      amount: Math.round(orderInfo.totalPrice * 100), //rupees in paise  
     }
+
+    const order = {
+      shippingInfo,
+      orderItems: cartItems,
+      itemsPrice: orderInfo.subtotal,
+      taxPrice: orderInfo.tax,
+      shippingPrice: orderInfo.shippingCharges,
+      totalPrice: orderInfo.totalPrice
+    };
     
     const submitHandler = async (e) => {
       e.preventDefault();
@@ -85,6 +95,13 @@ const Payment = () => {
         } else {
           if (result.paymentIntent.status === "succeeded") {
 
+            order.paymentInfo = {
+              id: result.paymentIntent.id,
+              status: result.paymentIntent.status
+            }
+
+            dispatch(createOrder(order));
+
             navigate("/success");
           } else {
             alert.error("There's some issue while processing the payment")
@@ -99,6 +116,14 @@ const Payment = () => {
       }
 
     };
+
+    useEffect(() => {
+      if (error) {
+        alert.error(error);
+        dispatch(clearErrors());
+      }
+    }, [dispatch, error, alert]);
+    
 
   return (
     <>
