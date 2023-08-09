@@ -52,7 +52,7 @@ export const userReducer = (state = {user: {}}, action) => {
             return {
                 loading: false,
                 user: null,
-                inAuthenticated: false
+                isAuthenticated: false
             };
 
         case LOGIN_FAIL: 
