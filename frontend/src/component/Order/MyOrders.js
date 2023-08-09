@@ -15,7 +15,7 @@ const MyOrders = () => {
   const alert = useAlert();
 
   const { loading, error, orders } = useSelector((state) => state.myOrders);
-  const { user } = useSelector((state) => state.user);
+  const { user, isAuthenticated } = useSelector((state) => state.user);
 
   const columns = [
     { field: "id", headerName: "Order ID", minWidth: 300, flex: 1 },
@@ -89,23 +89,26 @@ const MyOrders = () => {
 
   return (
     <>
-      <MetaData title={`${user.name} - Orders`} />
-
-      {loading ? (
+      {loading || !isAuthenticated ? (
         <Loader />
       ) : (
-        <div className="myOrdersPage">
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={10}
-            disableSelectionOnClick
-            className="myOrdersTable"
-            autoHeight
+        <>
+          <MetaData
+            title={`${user.name} -- Orders`}
           />
+          <div className="myOrdersPage">
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              pageSize={10}
+              disableSelectionOnClick
+              className="myOrdersTable"
+              autoHeight
+            />
 
-          <Typography id="myOrdersHeading">{user.name}'s Orders</Typography>
-        </div>
+            <Typography id="myOrdersHeading">{user.name}'s Orders</Typography>
+          </div>
+        </>
       )}
     </>
   );
