@@ -17,7 +17,7 @@
 }
 
 .paginationBox {
-  display: flex;
+  display: grid;
   justify-content: center;
   margin: 6vmax;
 }
@@ -72,6 +72,13 @@
     top: 10vmax;
     left: 4vmax;
   }
+
+.centered-slider .MuiSlider-valueLabel {
+  background-color: #665a4fd9;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
 
   .filterBox > span {
     color: tomato;

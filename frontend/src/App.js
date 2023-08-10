@@ -20,6 +20,9 @@ import Payment from "./component/Cart/Payment";
 import OrderSuccess from "./component/Cart/OrderSuccess";
 import MyOrders from "./component/Order/MyOrders";
 import OrderDetails from "./component/Order/OrderDetails";
+import Dashboard from "./component/Admin/Dashboard";
+import ProductList from "./component/Admin/ProductList";
+import NewProduct from "./component/Admin/NewProduct";
 import { Routes, Route } from "react-router-dom";
 import WebFont from "webfontloader";
 import store from "./store";
@@ -89,8 +92,13 @@ function App() {
           )}
           <Route path="/success" element={<OrderSuccess />} />
           <Route path="/orders" element={<MyOrders />} />
-
           <Route path="/order/:id" element={<OrderDetails />} />
+        </Route>
+
+        <Route element={<ProtectedRoute isAdmin={true} />} >
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/products" element={<ProductList />} />
+          <Route path="/admin/product" element={<NewProduct />} />
         </Route>
 
         <Route path="/password/forgot" element={<ForgotPassword />} />
