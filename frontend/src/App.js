@@ -26,6 +26,9 @@ import NewProduct from "./component/Admin/NewProduct";
 import UpdateProduct from "./component/Admin/UpdateProduct";
 import OrderList from "./component/Admin/OrderList";
 import ProcessOrder from "./component/Admin/ProcessOrder";
+import UsersList from "./component/Admin/UsersList";
+import UpdateUser from "./component/Admin/UpdateUser";
+import ProductReviews from "./component/Admin/ProductReviews";
 import { Routes, Route } from "react-router-dom";
 import WebFont from "webfontloader";
 import store from "./store";
@@ -105,6 +108,9 @@ function App() {
           <Route path="/admin/product/:id" element={<UpdateProduct />} />
           <Route path="/admin/orders" element={<OrderList />} />
           <Route path="/admin/order/:id" element={<ProcessOrder />} />
+          <Route path="/admin/users" element={<UsersList />} />
+          <Route path="/admin/user/:id" element={<UpdateUser />} />
+          <Route path="/admin/reviews" element={<ProductReviews />} />
         </Route>
 
         <Route path="/password/forgot" element={<ForgotPassword />} />
