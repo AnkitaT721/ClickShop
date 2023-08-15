@@ -23,6 +23,9 @@ import OrderDetails from "./component/Order/OrderDetails";
 import Dashboard from "./component/Admin/Dashboard";
 import ProductList from "./component/Admin/ProductList";
 import NewProduct from "./component/Admin/NewProduct";
+import UpdateProduct from "./component/Admin/UpdateProduct";
+import OrderList from "./component/Admin/OrderList";
+import ProcessOrder from "./component/Admin/ProcessOrder";
 import { Routes, Route } from "react-router-dom";
 import WebFont from "webfontloader";
 import store from "./store";
@@ -99,6 +102,9 @@ function App() {
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/products" element={<ProductList />} />
           <Route path="/admin/product" element={<NewProduct />} />
+          <Route path="/admin/product/:id" element={<UpdateProduct />} />
+          <Route path="/admin/orders" element={<OrderList />} />
+          <Route path="/admin/order/:id" element={<ProcessOrder />} />
         </Route>
 
         <Route path="/password/forgot" element={<ForgotPassword />} />

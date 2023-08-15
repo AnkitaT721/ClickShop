@@ -7,6 +7,7 @@ import { Line, Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { useDispatch, useSelector } from "react-redux";
 import { getAdminProduct } from "../../actions/productAction";
+import MetaData from "../layout/MetaData";
 ChartJS.register(...registerables);
 
 const Dashboard = () => {
@@ -45,7 +46,7 @@ const Dashboard = () => {
         labels: ["Out of Stock", "In Stock"],
         datasets: [
             {
-                backgroundColor: ["#00A6B4", "#6800B4"],
+                backgroundColor: ["#FFC5D4", "#FF5D89"],
                 hoverBackgroundColor: ["#4B5000", "#35014F"],
                 data: [outOfStock, inStock]
             }
@@ -53,6 +54,8 @@ const Dashboard = () => {
     };
 
   return (
+    <>
+    <MetaData title="Dashboard" />
     <div className="dashboard">
       <Sidebar />
 
@@ -90,6 +93,7 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
