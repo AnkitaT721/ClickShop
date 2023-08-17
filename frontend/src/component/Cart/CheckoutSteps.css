@@ -30,5 +30,5 @@
   
   .MuiStepConnector-active,
   .MuiStepConnector-completed {
-    background-color: tomato;
+    background-color: #e55a7f !important;
   }

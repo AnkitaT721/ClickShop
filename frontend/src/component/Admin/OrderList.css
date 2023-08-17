@@ -15,9 +15,9 @@
   }
   
   .orderListTable a:hover {
-    color: tomato;
+    color: #e55a7f;
   }
   
   .orderListTable button:hover {
-    color: rgb(236, 30, 30);
+    color: #b64261;
   }

@@ -9,3 +9,30 @@
   height: 56px;
   border-radius: 100%;
 }
+
+
+/* Header.css */
+
+/* Default styles for larger screens */
+/* Add your default styles here */
+
+/* Responsive styles for smaller screens */
+@media screen and (max-width: 768px) {
+  /* Example responsive styles: */
+  .overlay-navbar {
+    flex-direction: column; /* Change layout to vertical for smaller screens */
+  }
+  .overlay-navbar .navbar-links {
+    margin-top: 10px; /* Adjust spacing between links */
+  }
+  .overlay-navbar .navbar-logo {
+    align-self: center; /* Center logo on smaller screens */
+    max-width: 100%; /* Limit the logo's width to ensure visibility */
+  }
+  .overlay-navbar .navbar-icons {
+    justify-content: center; /* Center icons on smaller screens */
+  }
+  /* Adjust other styles as needed */
+}
+
+

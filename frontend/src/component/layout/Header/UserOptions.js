@@ -30,7 +30,7 @@ const UserOptions = ({ user }) => {
     {
       icon: (
         <FaShoppingCart
-          style={{ color: cartItems.length > 0 ? "tomato" : "unset" }}
+          style={{ color: cartItems.length > 0 ? "e55a7f" : "unset" }}
         />
       ),
       name: `Cart(${cartItems.length})`,

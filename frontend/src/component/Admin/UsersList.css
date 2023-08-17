@@ -15,9 +15,9 @@
   }
   
   .userListTable a:hover {
-    color: tomato;
+    color: #e55a7f;
   }
   
   .userListTable button:hover {
-    color: rgb(236, 30, 30);
+    color: #e55a7f;
   }

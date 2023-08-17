@@ -59,7 +59,7 @@
 }
 
 .pageItemActive {
-  background-color: tomato;
+  background-color: #e55a7f;
 }
 
 .pageLinkActive {
@@ -81,7 +81,7 @@
 }
 
   .filterBox > span {
-    color: tomato;
+    color: #e55a7f;
   }
   
   .categoryBox {
@@ -97,7 +97,7 @@
     transition: all 0.5s;
   }
   .category-link:hover {
-    color: tomato;
+    color: #e55a7f;
   }
   
   .filterBox > fieldset {
@@ -106,7 +106,7 @@
   }
 
   .filterBox > fieldset > span {
-    color: tomato;
+    color: #e55a7f;
   }
 
   .noProducts {

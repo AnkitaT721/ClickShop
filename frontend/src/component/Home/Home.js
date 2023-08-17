@@ -7,17 +7,16 @@ import { clearErrors, getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const alert = useAlert();
-  
+
   const dispatch = useDispatch();
-  const { loading, error, products } = useSelector(
-    (state) => state.products
-  );
+  const { loading, error, products } = useSelector((state) => state.products);
 
   useEffect(() => {
-    if(error){
+    if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
@@ -49,10 +48,13 @@ const Home = () => {
             {products &&
               products.map((product) => <ProductCard product={product} />)}
           </div>
+
+          <div className="homeProducts">
+            <Link to="/products">View All Products</Link>
+          </div>
         </>
       )}
     </>
   );
 };
-
 export default Home;

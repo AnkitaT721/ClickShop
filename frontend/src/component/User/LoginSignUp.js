@@ -5,7 +5,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import { SlLockOpen } from "react-icons/sl";
 import { MdAccountCircle } from "react-icons/md";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import profilePic from "../../images/rev1.png";
+import profilePic from "../../images/user.png";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";

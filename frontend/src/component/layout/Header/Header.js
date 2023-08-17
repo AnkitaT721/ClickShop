@@ -1,15 +1,17 @@
 import React from "react";
 import { ReactNavbar } from "overlay-navbar";
-import logo from "../../../images/logo1.png";
+import logo from "../../../images/logo2.png";
 
 import { MdAccountCircle } from "react-icons/md";
 import { FiSearch } from "react-icons/fi";
 import { FaShoppingCart } from "react-icons/fa";
 
 const options = {
-  burgerColorHover: "#ffc8dc",
+  burgerColor: "#ffc8dc",
+  burgerColorHover: "#f44a78",
   logo,
   logoWidth: "20vmax",
+  logoHeight: "unset",
   navColor1: "#FFFAFB",
   logoHoverSize: "10px",
   logoHoverColor: "#ffc8dc",
@@ -23,7 +25,7 @@ const options = {
   link4Url: "/about",
   link1Size: "1.3vmax",
   link1Color: "rgba(35, 35, 35,0.8)",
-  nav1justifyContent: "flex-end",
+  nav1justifyContent: "center",
   nav2justifyContent: "flex-end",
   nav3justifyContent: "flex-start",
   nav4justifyContent: "flex-start",
