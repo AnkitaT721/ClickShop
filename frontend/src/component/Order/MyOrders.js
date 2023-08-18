@@ -23,7 +23,7 @@ const MyOrders = () => {
       field: "createdAt",
       headerName: "Ordered on",
       type: "Date",
-      minWidth: 300,
+      minWidth: 200,
       flex: 1,
     },
     {
@@ -46,7 +46,7 @@ const MyOrders = () => {
       field: "amount",
       headerName: "Amount",
       type: "number",
-      minWidth: 150,
+      minWidth: 270,
       flex: 0.3,
     },
     {
@@ -103,7 +103,6 @@ const MyOrders = () => {
               pageSize={10}
               disableSelectionOnClick
               className="myOrdersTable"
-              autoHeight
             />
 
             <Typography id="myOrdersHeading">{user.name}'s Orders</Typography>

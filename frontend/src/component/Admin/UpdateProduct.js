@@ -49,6 +49,7 @@ const UpdateProduct = () => {
     "Attire",
     "Camera",
     "SmartPhones",
+    "Accessories"
   ];
 
   const updateProductSubmitHandler = (e) => {

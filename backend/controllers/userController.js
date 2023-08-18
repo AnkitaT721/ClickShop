@@ -26,6 +26,23 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     },
   });
 
+  const message = `Welcome to ClickShop ${name}!, You are registered successfully \n Start Shopping Now!`;
+
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: `Registration Successful`,
+      message,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: `Email sent to ${user.email} successfully`,
+    });
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 500));
+  }
+
   sendToken(user, 201, res);
 });
 
@@ -81,12 +98,9 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
   await user.save({ validateBeforeSave: false });
 
-  const resetPasswordUrl =
-    // `${req.protocol}://${req.get(
-    //   "host"
-    // )}/api/v1/password/reset/${resetToken}`;
-
-    `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
+  const resetPasswordUrl = `${req.protocol}://${req.get(
+    "host"
+  )}/password/reset/${resetToken}`;
 
   const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\n If you have not requested this email then, please ignore it`;
 
@@ -256,7 +270,7 @@ exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
   });
 
   res.status(200).json({
-    success: true
+    success: true,
   });
 });
 
@@ -274,7 +288,6 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
   const imageId = user.avatar.public_id;
 
   await cloudinary.v2.uploader.destroy(imageId);
-  
 
   await user.deleteOne();
 

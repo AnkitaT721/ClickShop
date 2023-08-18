@@ -18,6 +18,7 @@ const categories = [
   "Attire",
   "Camera",
   "SmartPhones",
+  "Accessories",
   "All",
 ];
 
@@ -54,6 +55,8 @@ const Products = () => {
       dispatch(clearErrors());
     }
     dispatch(getProduct(keyword, currentPage, price, category, ratings));
+
+    window.scrollTo(0, 0);
   }, [dispatch, error, alert, keyword, currentPage, price, category, ratings]);
 
   let count = filteredProductsCount;

@@ -9,6 +9,7 @@ import { LuLogOut } from "react-icons/lu";
 import { FaListAlt } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { GoHomeFill } from "react-icons/go";
+import { FaSearch } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +27,7 @@ const UserOptions = ({ user }) => {
 
   const options = [
     { icon: <FaListAlt />, name: "Orders", func: orders },
+    { icon: <FaSearch />, name: "Search", func: search },
     { icon: <BsFillPersonFill />, name: "Profile", func: account },
     {
       icon: (
@@ -73,6 +75,10 @@ const UserOptions = ({ user }) => {
 
   function cart() {
     navigate("/cart");
+  }
+
+  function search() {
+    navigate("/search");
   }
 
   function logoutUser() {
