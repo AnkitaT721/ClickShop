@@ -2,13 +2,13 @@
   "name": "clickshop",
   "version": "1.0.0",
   "description": "",
-  "main": "backend/server.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cross-env NodeEnv=Production node backend/server.js",
-    "dev": "cross-env NodeEnv=Development nodemon backend/server.js",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
     "bootstrap": "npm install && npm run front-end-build",
-    "front-end-build": "cd frontend && npm install && npm run build",
+    "front-end-build": "cd frontend && npm install --legacy-peer-deps && npm run build",
     "front-end-build-dev": "cd frontend && npm run build"
   },
   "author": "Ankita Talukdar",
